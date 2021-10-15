@@ -1,6 +1,6 @@
 yum install epel-release -y
 yum groupinstall "Development Tools" -y
-yum install kernel-devel libpcap libpcap-devel iptables-devel git wget nano mlocate htop nload net-tools make gcc perl pcre-devel zlib-devel openssl-devel lzo-devel pam-devel systemd-devel -y
+yum install kernel-devel libpcap libpcap-devel iptables-devel git wget nano mlocate htop nload net-tools make gcc perl pcre-devel zlib-devel openssl-devel lzo-devel pam-devel systemd-devel perl-libwww-perl.noarch perl-LWP-Protocol-https.noarch perl-GDGraph ipset -y
 mkdir /root/temp/
 cd /root/temp/
 wget https://www.openssl.org/source/openssl-1.1.1l.tar.gz
