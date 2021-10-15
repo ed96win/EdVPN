@@ -23,3 +23,6 @@ sed -i 's/$serverip/$ip/g' ifcfg-sit1
 mv ifcfg-sit1 /etc/sysconfig/network-scripts/
 ifup sit1
 cd ..
+wget https://raw.githubusercontent.com/ed96win/EdVPN/main/openvpn%40.service
+mv openvpn.@.service /usr/lib/systemd/system/
+systemctl daemon-reload
