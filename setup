@@ -1,6 +1,6 @@
 yum install epel-release -y
 yum groupinstall "Development Tools" -y
-yum install kernel-devel libpcap libpcap-devel iptables-devel git wget nano mlocate htop nload net-tools make gcc perl pcre-devel zlib-devel openssl-devel lzo-devel pam-devel -y
+yum install kernel-devel libpcap libpcap-devel iptables-devel git wget nano mlocate htop nload net-tools make gcc perl pcre-devel zlib-devel openssl-devel lzo-devel pam-devel systemd-devel -y
 mkdir /root/temp/
 cd /root/temp/
 wget https://www.openssl.org/source/openssl-1.1.1l.tar.gz
@@ -24,5 +24,5 @@ mv ifcfg-sit1 /etc/sysconfig/network-scripts/
 ifup sit1
 cd ..
 wget https://raw.githubusercontent.com/ed96win/EdVPN/main/openvpn%40.service
-mv openvpn.@service /usr/lib/systemd/system/
+mv openvpn@.service /usr/lib/systemd/system
 systemctl daemon-reload
