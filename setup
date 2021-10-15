@@ -1,6 +1,6 @@
 yum install epel-release -y
 yum groupinstall "Development Tools" -y
-yum install kernel-devel libpcap libpcap-devel iptables-devel git wget nano mlocate htop nload net-tools make gcc perl pcre-devel zlib-devel openssl-devel lzo-devel pam-devel systemd-devel perl-libwww-perl.noarch perl-LWP-Protocol-https.noarch perl-GDGraph ipset -y
+yum install kernel-devel libpcap libpcap-devel iptables-devel git wget nano mlocate htop nload net-tools make gcc perl pcre-devel zlib-devel iptables-services openssl-devel lzo-devel pam-devel systemd-devel perl-libwww-perl.noarch perl-LWP-Protocol-https.noarch perl-GDGraph ipset -y
 mkdir /root/temp/
 cd /root/temp/
 wget https://www.openssl.org/source/openssl-1.1.1l.tar.gz
@@ -41,4 +41,17 @@ csf -x
 curl -O https://raw.githubusercontent.com/ed96win/EdVPN/main/csf/csf.conf
 curl -O https://raw.githubusercontent.com/ed96win/EdVPN/main/csf/csf.allow
 curl -O https://raw.githubusercontent.com/ed96win/EdVPN/main/csf/csfpost.sh
-csf -e
+cd /usr/src/kernels/
+git clone https://github.com/betolj/ndpi-netfilter.git
+cd ndpi-netfilter
+tar xzvf nDPI.tar.gz
+cd nDPI
+./autogen.sh
+make
+make install
+cd ..
+NDPI_PATH=/usr/src/kernels/ndpi-netfilter/nDPI make
+make modules_install
+cp /usr/src/kernels/ndpi-netfilter/ipt/libxt_ndpi.so /usr/lib64/xtables/
+iptables -m ndpi --help
+modprobe xt_ndpi
