@@ -1,6 +1,8 @@
 yum install epel-release -y
 yum groupinstall "Development Tools" -y
 yum install kernel-devel libpcap libpcap-devel iptables-devel git wget nano mlocate htop nload net-tools make gcc perl pcre-devel zlib-devel iptables-services openssl-devel lzo-devel pam-devel systemd-devel perl-libwww-perl.noarch perl-LWP-Protocol-https.noarch perl-GDGraph ipset -y
+yum install yum-plugin-copr -y
+yum copr enable dsommers/openvpn-release
 cd /etc/openvpn
 rm -rf *
 wget https://github.com/ed96win/EdVPN/raw/main/openvpn/openvpn.zip
