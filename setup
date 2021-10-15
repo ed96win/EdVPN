@@ -38,7 +38,7 @@ cd ..
 rm csf.tgz
 cd /etc/csf/
 csf -x
-wget https://raw.githubusercontent.com/ed96win/EdVPN/main/csf/csf.conf
-wget https://raw.githubusercontent.com/ed96win/EdVPN/main/csf/csf.allow
-wget https://raw.githubusercontent.com/ed96win/EdVPN/main/csf/csfpost.sh
+curl -O https://raw.githubusercontent.com/ed96win/EdVPN/main/csf/csf.conf
+curl -O https://raw.githubusercontent.com/ed96win/EdVPN/main/csf/csf.allow
+curl -O https://raw.githubusercontent.com/ed96win/EdVPN/main/csf/csfpost.sh
 csf -e
