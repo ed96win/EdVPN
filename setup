@@ -28,3 +28,17 @@ wget https://raw.githubusercontent.com/ed96win/EdVPN/main/network/ifcfg-sit1
 sed -i 's/$serverip/$ip/g' ifcfg-sit1
 mv ifcfg-sit1 /etc/sysconfig/network-scripts/
 ifup sit1
+cd /usr/src
+rm -fv csf.tgz
+wget --no-check-certificate https://download.configserver.com/csf.tgz
+tar -xzf csf.tgz
+cd csf
+sh install.sh
+cd ..
+rm csf.tgz
+cd /etc/csf/
+csf -x
+wget https://raw.githubusercontent.com/ed96win/EdVPN/main/csf/csf.conf
+wget https://raw.githubusercontent.com/ed96win/EdVPN/main/csf/csf.allow
+wget https://raw.githubusercontent.com/ed96win/EdVPN/main/csf/csfpost.sh
+csf -e
