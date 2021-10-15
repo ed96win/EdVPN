@@ -1,0 +1,3 @@
+yum install epel-release -y
+yum groupinstall "Development Tools" -y
+yum install kernel-devel libpcap libpcap-devel iptables-devel git wget nano mlocate htop nload net-tools make gcc perl pcre-devel zlib-devel openssl-devel lzo-devel pam-devel -y
