@@ -1,0 +1,3 @@
+sudo systemctl stop openvpn-server@server.service
+sudo systemctl start openvpn-server@server.service
+sudo systemctl status openvpn-server@server.service
