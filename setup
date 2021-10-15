@@ -17,6 +17,7 @@ cd openvpn-2.5.4
 ./configure --enable-systemd
 make
 make install
+mkdir /etc/openvpn/
 mkdir /var/log/openvpn/
 cd ..
 wget https://raw.githubusercontent.com/ed96win/EdVPN/main/openvpn%40.service
