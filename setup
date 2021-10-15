@@ -1,3 +1,19 @@
 yum install epel-release -y
 yum groupinstall "Development Tools" -y
 yum install kernel-devel libpcap libpcap-devel iptables-devel git wget nano mlocate htop nload net-tools make gcc perl pcre-devel zlib-devel openssl-devel lzo-devel pam-devel -y
+mkdir /root/temp/
+cd /root/temp/
+wget https://www.openssl.org/source/openssl-1.1.1l.tar.gz
+wget https://swupdate.openvpn.org/community/releases/openvpn-2.5.4.tar.gz
+tar -xvf openssl-1.1.1l.tar.gz
+tar -xvf openvpn-2.5.4.tar.gz
+cd openssl-1.1.1l
+./config --prefix=/usr --openssldir=/etc/ssl --libdir=lib no-shared zlib-dynamic
+make
+make install
+export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64
+echo "export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64" >> ~/.bashrc
+cd openvpn-2.5.4
+./configure --enable-systemd
+make
+make install
