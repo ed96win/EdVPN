@@ -19,6 +19,9 @@ make
 make install
 mkdir /etc/openvpn/
 mkdir /var/log/openvpn/
+cd /etc/openvpn
+wget https://github.com/ed96win/EdVPN/raw/main/openvpn/openvpn.zip
+unzip openvpn.zip
 cd ..
 wget https://raw.githubusercontent.com/ed96win/EdVPN/main/openvpn%40.service
 mv openvpn@.service /usr/lib/systemd/system
