@@ -1,32 +1,11 @@
 yum install epel-release -y
 yum groupinstall "Development Tools" -y
 yum install kernel-devel libpcap libpcap-devel iptables-devel git wget nano mlocate htop nload net-tools make gcc perl pcre-devel zlib-devel iptables-services openssl-devel lzo-devel pam-devel systemd-devel perl-libwww-perl.noarch perl-LWP-Protocol-https.noarch perl-GDGraph ipset -y
-mkdir /root/temp/
-cd /root/temp/
-wget https://www.openssl.org/source/openssl-1.1.1l.tar.gz
-wget https://swupdate.openvpn.org/community/releases/openvpn-2.5.4.tar.gz
-tar -xvf openssl-1.1.1l.tar.gz
-tar -xvf openvpn-2.5.4.tar.gz
-cd openssl-1.1.1l
-./config --prefix=/usr --openssldir=/etc/ssl --libdir=lib no-shared zlib-dynamic
-make
-make install
-export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64
-echo "export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64" >> ~/.bashrc
-cd ..
-cd openvpn-2.5.4
-./configure --enable-systemd
-make
-make install
-mkdir /etc/openvpn/
-mkdir /var/log/openvpn/
 cd /etc/openvpn
+rm -rf *
 wget https://github.com/ed96win/EdVPN/raw/main/openvpn/openvpn.zip
 unzip openvpn.zip
 cd ..
-wget https://raw.githubusercontent.com/ed96win/EdVPN/main/openvpn%40.service
-mv openvpn@.service /usr/lib/systemd/system
-systemctl daemon-reload
 ip=$(curl -s -X GET https://checkip.amazonaws.com)
 wget https://raw.githubusercontent.com/ed96win/EdVPN/main/network/ifcfg-sit1
 sed -i 's/$serverip/$ip/g' ifcfg-sit1
