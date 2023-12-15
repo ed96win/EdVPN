@@ -1,17 +1,17 @@
 apt update -y
 apt upgrade -y
 apt install libtool autoconf libnl-genl-3-dev pkg-config libcap-ng-dev libssl-dev liblz4-dev liblzo2-dev libpam0g-dev libtool-bin build-essential -y
-wget https://swupdate.openvpn.org/community/releases/openvpn-2.6.7.tar.gz
-tar -xvf openvpn-2.6.7.tar.gz
-cd openvpn-2.6.7
+wget https://swupdate.openvpn.org/community/releases/openvpn-2.6.8.tar.gz
+tar -xvf openvpn-2.6.8.tar.gz
+cd openvpn-2.6.8
 autoreconf -vi
 ./configure
 make -j2
 make install
 openvpn --version
 cd ~
-rm -f openvpn-2.6.7.tar.gz
-rm -rf openvpn-2.6.7
+rm -f openvpn-2.6.8.tar.gz
+rm -rf openvpn-2.6.8
 sudo sh -c 'echo "[Unit]
 Description=OpenVPN service
 After=network.target
@@ -27,9 +27,3 @@ Restart=always
 [Install]
 WantedBy=multi-user.target" > /etc/systemd/system/openvpn.service'
 sudo systemctl daemon-reload
-git clone https://github.com/HouQiming/udp2raw.git
-mv udp2raw folder
-cd folder
-make
-mv udp2raw /usr/bin
-rm -rf /root/folder
