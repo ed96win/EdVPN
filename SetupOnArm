@@ -32,3 +32,7 @@ cd ~
 wget https://github.com/shoenig/bcrypt-tool/releases/download/v1.1.6/bcrypt-tool_1.1.6_linux_arm64.tar.gz
 tar -xvf bcrypt-tool_1.1.6_linux_arm64.tar.gz
 mv bcrypt-tool /usr/bin
+git clone https://github.com/edthepurple/auth-script-openvpn.git
+cd auth-script-openvpn
+make
+mv openvpn-plugin-auth-script.so /usr/local/lib/openvpn/plugins/
