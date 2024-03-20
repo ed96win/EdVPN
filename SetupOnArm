@@ -36,3 +36,6 @@ git clone https://github.com/edthepurple/auth-script-openvpn.git
 cd auth-script-openvpn
 make
 mv openvpn-plugin-auth-script.so /usr/local/lib/openvpn/plugins/
+apt install apache2
+systemctl enable apache2
+systemctl enable openvpn
