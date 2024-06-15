@@ -16,8 +16,8 @@ push "route-ipv6 2000::/3"
 
 and save, we also insert the connect.sh and disconnect.sh from this repo in the openvpn directory and we add this to the config:
 
-script-security 3
-client-connect /etc/openvpn/connect.sh
+script-security 3\
+client-connect /etc/openvpn/connect.sh\
 client-disconnect /etc/openvpn/disconnect.sh
 
 make these two files executable by "chmod +x"
