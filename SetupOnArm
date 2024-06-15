@@ -27,15 +27,9 @@ Restart=always
 [Install]
 WantedBy=multi-user.target" > /etc/systemd/system/openvpn.service'
 sudo systemctl daemon-reload
-apt install mysql-client -y
 cd ~
-wget https://github.com/shoenig/bcrypt-tool/releases/download/v1.1.6/bcrypt-tool_1.1.6_linux_arm64.tar.gz
-tar -xvf bcrypt-tool_1.1.6_linux_arm64.tar.gz
-mv bcrypt-tool /usr/bin
 git clone https://github.com/edthepurple/auth-script-openvpn.git
 cd auth-script-openvpn
 make
 mv openvpn-plugin-auth-script.so /usr/local/lib/openvpn/plugins/
-apt install apache2
-systemctl enable apache2
 systemctl enable openvpn
