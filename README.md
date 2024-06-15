@@ -10,8 +10,8 @@ we modify openvpn server.conf file
 
 we put
 
-server-ipv6 2001:470:1f13:97::/64
-push "tun-ipv6"
+server-ipv6 2001:470:1f13:97::/64\
+push "tun-ipv6"\
 push "route-ipv6 2000::/3"
 
 and save, we also insert the connect.sh and disconnect.sh from this repo in the openvpn directory and we add this to the config:
