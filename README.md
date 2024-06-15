@@ -22,6 +22,6 @@ client-disconnect /etc/openvpn/disconnect.sh
 
 make these two files executable by "chmod +x"
 
-and then restart the openvpn restart.
+and then restart the openvpn service.
 
 now, instead of your ip addresses being like 2001:470:c85a:1001, its gonna be like 2001:470:c85a:8ca:f8fd:f5cc:3eda (completely random but valid).
