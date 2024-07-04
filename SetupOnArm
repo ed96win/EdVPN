@@ -33,3 +33,19 @@ cd auth-script-openvpn
 make
 mv openvpn-plugin-auth-script.so /usr/local/lib/openvpn/plugins/
 systemctl enable openvpn
+sudo sh -c 'echo "[Unit]
+Description=OpenVPN TCP service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/etc/openvpn
+ExecStart=/usr/local/sbin/openvpn --config /etc/openvpn/tcp.conf
+Restart=always
+
+[Install]
+WantedBy=multi-user.target" > /etc/systemd/system/openvpn-tcp.service'
+sudo systemctl daemon-reload
+systemctl enable openvpn-tcp
