@@ -1,0 +1,20 @@
+[server]
+bind_addr = "0.0.0.0:27015"
+default_token = "iJT5nWLo6fYI8zMxHPeDE7ok"
+heartbeat_interval = 0
+
+[server.transport]
+type = "noise"
+
+[server.transport.noise]
+pattern = "Noise_KK_25519_ChaChaPoly_BLAKE2s"
+local_private_key = "uO3qkGhfId7josk54IkksbbDn3iLysq77ty2bPOiFXA="
+remote_public_key = "sKDWEizIaVtZb+6VVcrab5KRgFuTbOnMJgnNSj/e4TM="
+
+[server.services.tcp]
+bind_addr = "0.0.0.0:42300"
+type = "tcp"
+
+[server.services.xray]
+bind_addr = "0.0.0.0:443"
+type = "tcp"
