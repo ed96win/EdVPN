@@ -1,0 +1,15 @@
+[Unit]
+Description=Xray Service
+After=network.target
+
+[Service]
+Type=simple
+DynamicUser=yes
+Restart=on-failure
+RestartSec=5s
+ExecStart=/usr/bin/xray -c /usr/local/xray/config.json
+LimitNOFILE=1048576
+
+[Install]
+WantedBy=multi-user.target
+
