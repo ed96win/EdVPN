@@ -12,7 +12,7 @@ local_private_key = "CJHbyVBCnIFXW9zz4kTvrQQWJfo0257MDYpq0KqaPlI="
 remote_public_key = "bnXjhbLKrzKR4gjTr+DdYlalu7mvqT/QQtCur6DEnyo="
 
 [client.services.tcp]
-local_addr = "0.0.0.0:42100"
+local_addr = "0.0.0.0:42200"
 type = "tcp"
 
 [client.services.xray]
