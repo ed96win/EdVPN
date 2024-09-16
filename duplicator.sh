@@ -17,9 +17,19 @@ create_service_file() {
     echo "Service for $ip created, enabled at startup, and started successfully."
 }
 
-# Check if /etc/rathole exists
-if [ ! -d "/etc/rathole" ]; then
-    echo "rathole not installed, please run MushMushak first"
+# Function to replace IP in the TOML file
+replace_ip_in_toml() {
+    local old_ip=$1
+    local new_ip=$2
+    local toml_file=$3
+
+    # Replace the IP address in the remote_addr field
+    sed -i "s/$old_ip/$new_ip/g" "$toml_file"
+}
+
+# Check if /etc/rathole and server.toml both exist
+if [ ! -d "/etc/rathole" ] || [ ! -f "/etc/rathole/server.toml" ]; then
+    echo "Either rathole is not installed or server.toml is missing. Please run MushMushak first."
     exit 1
 fi
 
@@ -36,9 +46,16 @@ for (( i=1; i<=num_servers; i++ )); do
     # Store the IP in the array
     iran_ips+=("$iran_ip")
 
-    # Make a copy of the server.toml and replace the placeholder IP with the given IP
+    # Copy the base server.toml file
     cp /etc/rathole/server.toml "/etc/rathole/server-${iran_ip}.toml"
-    sed -i "s/94.182.145.210/${iran_ip}/g" "/etc/rathole/server-${iran_ip}.toml"
+
+    # Find the current IP in remote_addr and replace it with the provided IP
+    current_ip=$(grep -Po '(?<=remote_addr = ")[^:]*' /etc/rathole/server.toml)
+    if [ -n "$current_ip" ]; then
+        replace_ip_in_toml "$current_ip" "$iran_ip" "/etc/rathole/server-${iran_ip}.toml"
+    else
+        echo "Warning: Could not find an IP address in server.toml. Skipping replacement for $iran_ip."
+    fi
 
     # Create, enable at startup, and start the systemd service for the current IP
     create_service_file "$iran_ip"
