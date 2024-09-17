@@ -172,8 +172,13 @@ if [ "$choice" == "1" ]; then
     read -p "Enter the IP address of iran server (default: 94.182.145.210): " ip_address
     ip_address=${ip_address:-94.182.145.210}
 
-    # Replace the default IP address with the user-provided IP address
+    # Ask for the TCP port of OpenVPN with a default value
+    read -p "Enter the TCP port for OpenVPN (default: 42200): " openvpn_port
+    openvpn_port=${openvpn_port:-42200}
+
+    # Replace the default IP address and TCP port with the user-provided values
     sed -i "s/94.182.145.210/$ip_address/g" /etc/rathole/server.toml
+    sed -i "s/42200/$openvpn_port/g" /etc/rathole/server.toml
 
     # Start the rathole service
     systemctl start rathole
