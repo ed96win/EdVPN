@@ -21,14 +21,14 @@
                 "security": "reality",
                 "realitySettings": {
                     "show": false,
-                    "dest": "www.lovelive-anime.jp:443",
+                    "dest": "hetzner.com:443",
                     "xver": 0,
                     "serverNames": [
-                        "www.lovelive-anime.jp"
+                        "hetzner.com"
                     ],
                     "privateKey": "QNraK6EdxPNOzfbL2G1BTl_OeMSxm49H5vps2qzQ3E0",
                     "shortIds": [
-                        "77c2358dc476ae9e"
+                        "9999"
                     ]
                 }
             }
