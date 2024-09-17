@@ -4,13 +4,13 @@
     },
     "inbounds": [
         {
-            "tag":"wireguard",
+            "tag": "wireguard",
             "port": 42300,
-            "protocol":"dokodemo-door",
-            "settings":{
-                "address":"127.0.0.1",
-                "port":42100,
-                "network":"udp"
+            "protocol": "dokodemo-door",
+            "settings": {
+                "address": "127.0.0.1",
+                "port": 42100,
+                "network": "udp"
             }
         }
     ],
@@ -38,11 +38,15 @@
                 "realitySettings": {
                     "show": false,
                     "fingerprint": "chrome",
-                    "serverName": "www.lovelive-anime.jp",
+                    "serverName": "hetzner.com",
                     "publicKey": "eZfl07Tg9UII29GaS23QXqB15aqrJ4Khm0vKJIcaMCo",
                     "shortId": "77c2358dc476ae9e",
                     "spiderX": ""
                 }
+            },
+            "mux": {
+                "enabled": true,
+                "concurrency": 1024
             },
             "tag": "proxy"
         }
