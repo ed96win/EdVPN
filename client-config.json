@@ -33,16 +33,8 @@
                 ]
             },
             "streamSettings": {
-                "network": "h2",
-                "security": "reality",
-                "realitySettings": {
-                    "show": false,
-                    "fingerprint": "chrome",
-                    "serverName": "hetzner.com",
-                    "publicKey": "eZfl07Tg9UII29GaS23QXqB15aqrJ4Khm0vKJIcaMCo",
-                    "shortId": "77c2358dc476ae9e",
-                    "spiderX": ""
-                }
+                "network": "tcp",
+                "security": "none"
             },
             "mux": {
                 "enabled": true,
