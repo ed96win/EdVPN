@@ -11,10 +11,10 @@ pattern = "Noise_KK_25519_ChaChaPoly_BLAKE2s"
 local_private_key = "CJHbyVBCnIFXW9zz4kTvrQQWJfo0257MDYpq0KqaPlI="
 remote_public_key = "bnXjhbLKrzKR4gjTr+DdYlalu7mvqT/QQtCur6DEnyo="
 
-[client.services.tcp]
-local_addr = "0.0.0.0:42200"
+[client.services.openvpn]
+local_addr = "127.0.0.1:42200"
 type = "tcp"
 
 [client.services.xray]
-local_addr = "0.0.0.0:8081"
+local_addr = "127.0.0.1:8081"
 type = "tcp"
