@@ -11,7 +11,7 @@ pattern = "Noise_KK_25519_ChaChaPoly_BLAKE2s"
 local_private_key = "uO3qkGhfId7josk54IkksbbDn3iLysq77ty2bPOiFXA="
 remote_public_key = "sKDWEizIaVtZb+6VVcrab5KRgFuTbOnMJgnNSj/e4TM="
 
-[server.services.tcp]
+[server.services.openvpn]
 bind_addr = "0.0.0.0:42500"
 type = "tcp"
 
