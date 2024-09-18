@@ -27,10 +27,62 @@ replace_ip_in_toml() {
     sed -i "s/$old_ip/$new_ip/g" "$toml_file"
 }
 
+# Function to uninstall services and clean up files
+uninstall() {
+    # Find all TOML files for existing services
+    local toml_files=(/etc/rathole/server-*.toml)
+    
+    # Check if any TOML files exist
+    if [ ${#toml_files[@]} -eq 0 ]; then
+        echo "No services found for uninstallation."
+        return
+    fi
+
+    # Stop and disable services based on the TOML file names (IPs)
+    for toml_file in "${toml_files[@]}"; do
+        ip=$(basename "$toml_file" | sed 's/server-//' | sed 's/.toml//')
+
+        echo "Stopping and disabling service for $ip..."
+        systemctl stop "rathole-client-${ip}.service"
+        systemctl disable "rathole-client-${ip}.service"
+        
+        # Remove the service file
+        rm -f "/etc/systemd/system/rathole-client-${ip}.service"
+
+        # Remove the corresponding TOML file
+        rm -f "$toml_file"
+    done
+
+    # Reload systemd to reflect changes
+    systemctl daemon-reload
+
+    # Optionally remove the /etc/rathole directory if empty
+    if [ -z "$(ls -A /etc/rathole)" ]; then
+        echo "Removing /etc/rathole directory..."
+        rmdir /etc/rathole
+    else
+        echo "/etc/rathole directory is not empty, skipping directory removal."
+    fi
+
+    echo "All services stopped, disabled, and files removed successfully."
+}
+
 # Check if /etc/rathole and server.toml both exist
 if [ ! -d "/etc/rathole" ] || [ ! -f "/etc/rathole/server.toml" ]; then
     echo "Either rathole is not installed or server.toml is missing. Please run MushMushak first."
     exit 1
+fi
+
+# Ask the user if they want to install or uninstall
+echo "Choose an option:"
+echo "1) Install"
+echo "2) Uninstall"
+read -p "Enter your choice (1 or 2): " choice
+
+if [ "$choice" -eq 2 ]; then
+    # Uninstall option selected, automatically uninstall all detected services
+    uninstall
+    exit 0
 fi
 
 # Ask for the number of Iran servers
