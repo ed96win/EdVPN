@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-DynamicUser=yes
+user=root
 Restart=on-failure
 RestartSec=5s
 ExecStart=/usr/bin/xray -c /usr/local/xray/config.json
