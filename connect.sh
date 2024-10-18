@@ -25,6 +25,9 @@ _config_file="$1"
 
 _timeout=3600
 
+# Ensure that the /var/lib/openvpn directory exists
+[ -d /var/lib/openvpn ] || mkdir -p /var/lib/openvpn
+
 # Extract the /112 prefix (7 segments) from the provided IPv6 address
 _prefix_ipv6=${ifconfig_ipv6_local%%::*}:0:0
 _pool_ipv6_dir=/var/lib/openvpn/pool_$_prefix_ipv6
@@ -32,7 +35,7 @@ _pool_ipv6_dir=/var/lib/openvpn/pool_$_prefix_ipv6
 _pool_ipv6=$_pool_ipv6_dir/$common_name
 
 # Create the pool directory if it doesn't exist
-[ -d $_pool_ipv6_dir ] || mkdir $_pool_ipv6_dir
+[ -d $_pool_ipv6_dir ] || mkdir -p $_pool_ipv6_dir
 
 # Check if a valid IPv6 address is already allocated and still within the timeout
 if [ -f $_pool_ipv6 ] && [ $(stat --printf %Y $_pool_ipv6) -ge $(date -d-${_timeout}sec +%s) ]; then
@@ -45,4 +48,3 @@ fi
 
 # Push the generated IPv6 address
 echo "ifconfig-ipv6-push $_addr_ipv6" > $_config_file
-
