@@ -1,14 +1,14 @@
 #!/bin/bash
 # to be used with client-connect option of openvpn
 
-# Simple dad by checking all files in pool dir
+# Simple DAD by checking all files in pool dir
 dad_check () {
-        local test_addr=$1
-        for i in ls $_pool_ipv6_dir; do
-                [ $i = $common_name ] && continue
-                [ $(< $_pool_ipv6_dir/$i) = $test_addr ] && return 1
-        done
-        return 0
+    local test_addr=$1
+    for i in $(ls "$_pool_ipv6_dir"); do
+        [ "$i" = "$common_name" ] && continue
+        [ "$(cat "$_pool_ipv6_dir/$i")" = "$test_addr" ] && return 1
+    done
+    return 0
 }
 
 # Generate an IPv6 address based on the provided /112 prefix
@@ -39,11 +39,11 @@ _pool_ipv6=$_pool_ipv6_dir/$common_name
 
 # Check if a valid IPv6 address is already allocated and still within the timeout
 if [ -f $_pool_ipv6 ] && [ $(stat --printf %Y $_pool_ipv6) -ge $(date -d-${_timeout}sec +%s) ]; then
-        _addr_ipv6=$(< $_pool_ipv6)
-        dad_check $_addr_ipv6 || { _addr_ipv6=$(gen_ipv6_addr $_prefix_ipv6) && echo -n $_addr_ipv6 > $_pool_ipv6; }
+    _addr_ipv6=$(< $_pool_ipv6)
+    dad_check $_addr_ipv6 || { _addr_ipv6=$(gen_ipv6_addr $_prefix_ipv6) && echo -n $_addr_ipv6 > $_pool_ipv6; }
 else
-        _addr_ipv6=$(gen_ipv6_addr $_prefix_ipv6)
-        echo -n $_addr_ipv6 > $_pool_ipv6
+    _addr_ipv6=$(gen_ipv6_addr $_prefix_ipv6)
+    echo -n $_addr_ipv6 > $_pool_ipv6
 fi
 
 # Push the generated IPv6 address
