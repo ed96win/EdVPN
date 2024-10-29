@@ -1,0 +1,15 @@
+[client]
+remote_addr = "5.57.37.115:27015"
+heartbeat_timeout = 0
+
+[client.transport]
+type = "tls"
+
+[client.transport.tls]
+trusted_root = "/etc/rathole/rootCA.crt"
+hostname = "localhost"
+
+[client.services.xray]
+type = "tcp"
+local_addr = "127.0.0.1:8081"
+token = "tcp"
