@@ -1,0 +1,15 @@
+[server]
+heartbeat_interval = 0
+bind_addr = "0.0.0.0:27015"
+
+[server.transport]
+type = "tls"
+
+[server.transport.tls]
+pkcs12 = "/etc/rathole/identity.pfx"
+pkcs12_password = "1234"
+
+[server.services.xray]
+type = "tcp"
+bind_addr = "0.0.0.0:8081"
+token = "tcp"
