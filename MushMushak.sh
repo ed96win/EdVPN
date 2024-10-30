@@ -66,6 +66,7 @@ apply_sysctl_config() {
     {
         echo "# Enable IP Forwarding"
         echo "net.ipv4.ip_forward = 1"
+        echo ""
         echo "net.ipv6.conf.all.forwarding=1"
         echo ""
         echo "# Enable TCP BBR congestion control"
