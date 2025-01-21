@@ -1,17 +1,17 @@
 apt update -y
 apt upgrade -y
 apt install libtool autoconf libnl-genl-3-dev pkg-config libcap-ng-dev libssl-dev liblz4-dev liblzo2-dev libpam0g-dev libtool-bin build-essential -y
-wget https://swupdate.openvpn.org/community/releases/openvpn-2.6.12.tar.gz
-tar -xvf openvpn-2.6.12.tar.gz
-cd openvpn-2.6.12
+wget https://swupdate.openvpn.org/community/releases/openvpn-2.6.13.tar.gz
+tar -xvf openvpn-2.6.13.tar.gz
+cd openvpn-2.6.13
 autoreconf -vi
 ./configure
 make -j2
 make install
 openvpn --version
 cd ~
-rm -f openvpn-2.6.12.tar.gz
-rm -rf openvpn-2.6.12
+rm -f openvpn-2.6.13.tar.gz
+rm -rf openvpn-2.6.13
 sudo sh -c 'echo "[Unit]
 Description=OpenVPN service
 After=network.target
